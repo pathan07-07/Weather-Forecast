@@ -177,3 +177,36 @@ function updateCurrentWeather(data) {
 // Set video background according to weather
   setAppBackground(data.weather[0].main.toLowerCase());
 }
+
+
+
+
+function setAppBackground(condition) {
+  // Change video background according to weather
+  const video = document.getElementById('weather-video');
+  let src = 'videos/clear.mp4';
+  switch (condition) {
+    case 'rain':
+      src = './videos/rain.mp4'; break;
+    case 'clouds':
+      src = './videos/clouds.mp4'; break;
+    case 'snow':
+      src = './videos/snow.mp4'; break;
+    case 'thunderstorm':
+      src = './videos/thunderstorm.mp4'; break;
+    case 'mist':
+      src = './videos/mist.mp4'; break;
+    case 'drizzle':
+      src = './videos/drizzle.mp4'; break;
+    case 'clear':
+    default:
+      src = './videos/clear.mp4'; break;
+  }
+  if (video) {
+    const source = video.querySelector('source');
+    if (source.src !== src) {
+      source.src = src;
+      video.load();
+    }
+  }
+}
