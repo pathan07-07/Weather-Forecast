@@ -1,72 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Forecast</title>
-    <link href="./src/output.css" rel="stylesheet">
-
+  <link href="./src/output.css" rel="stylesheet">
 </head>
-
 <body id="app-bg" class="relative min-h-screen flex flex-col">
-    <!-- Weather Video Background -->
-    <video id="weather-video" class="absolute inset-0 w-full h-full object-cover z-0" autoplay loop muted playsinline>
-        <source src="videos/clear.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-    </video>
-    <div class="absolute inset-0 bg-black/30 z-10"></div>
-    <!-- Header -->
-    <header class="py-6 px-4 bg-transparent text-white z-30 relative ">
-        <div class="container mx-auto flex flex-col items-center">
-            <div class="flex items-center gap-2">
-                <svg class="w-9 h-9 text-yellow-400" fill="none" stroke="currentColor" stroke-width="1.5"
-                    viewBox="0 0 24 24">
-                    <circle cx="12" cy="12" r="5" fill="#facc15" stroke="#facc15" />
-                    <path d="M17 12a5 5 0 01-5 5 5 5 0 01-5-5" fill="#60a5fa" stroke="#60a5fa" />
-                    <path
-                        d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"
-                        stroke="#facc15" stroke-width="1.2" />
-                </svg>
-                <h1 class="text-3xl font-bold tracking-wide">Weather Forecast</h1>
-            </div>
-            <p class="mt-2 text-sm opacity-80">Your daily weather companion</p>
-        </div>
-    </header>
-    <!-- Main Content -->
-    <main
-        class="flex-1 container mx-auto px-2 py-4 flex flex-col items-center z-20 relative overflow-auto max-w-full sm:px-4 sm:py-8">
-        <!-- Search & Location -->
-        <div class="w-full max-w-md mb-6 flex flex-col gap-4 items-center">
-            <div class="flex flex-col gap-2 w-full sm:flex-row sm:gap-2">
-                <input id="city-input" type="text" placeholder="Enter city name..."
-                    class="flex-1 px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 w-full sm:w-auto text-sm sm:text-base text-white" />
-                <button id="search-btn"
-                    class="px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition w-full sm:w-auto text-sm sm:text-base">Search</button>
-                <button id="location-btn"
-                    class="px-3 py-2 bg-gray-200 text-blue-600 rounded-lg hover:bg-blue-100 transition flex items-center gap-1 w-full sm:w-auto text-sm sm:text-base mt-2 sm:mt-0">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path
-                            d="M12 2v2m0 16v2m8-10h2M2 12H4m15.364-7.364l1.414 1.414M4.222 19.778l1.414-1.414M19.778 19.778l-1.414-1.414M4.222 4.222l1.414 1.414" />
-                    </svg>
-                    My Location
-                </button>
-            </div>
-            <!-- Recent Searches Dropdown -->
-            <div id="recent-dropdown" class="hidden relative">
-                <button class="w-full px-4 py-2 bg-white border rounded-lg shadow flex justify-between items-center">
-                    Recent Cities
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path d="M19 9l-7 7-7-7" />
-                    </svg>
-                </button>
-                <ul class="absolute left-0 right-0 mt-2 bg-white border rounded-lg shadow z-10" id="recent-list">
-                    <!-- Recent cities will be injected here -->
-                </ul>
-            </div>
-        </div>
+  <!-- Weather Video Background -->
+  <video id="weather-video" class="absolute inset-0 w-full h-full object-cover z-0" autoplay loop muted playsinline>
+    <source src="videos/clear.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+  <div class="absolute inset-0 bg-black/30 z-10"></div>
+  <!-- Header -->
+  <header class="py-6 px-4 bg-transparent text-white z-30 relative ">
+    <div class="container mx-auto flex flex-col items-center">
+      <div class="flex items-center gap-2">
+        <svg class="w-9 h-9 text-yellow-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="5" fill="#facc15" stroke="#facc15"/>
+          <path d="M17 12a5 5 0 01-5 5 5 5 0 01-5-5" fill="#60a5fa" stroke="#60a5fa"/>
+          <path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="#facc15" stroke-width="1.2"/>
+        </svg>
+        <h1 class="text-3xl font-bold tracking-wide">Weather Forecast</h1>
+      </div>
+      <p class="mt-2 text-sm opacity-80">Your daily weather companion</p>
+    </div>
+  </header>
 
-         <!-- Current Weather Card -->
+  <!-- Main Content -->
+  <main class="flex-1 container mx-auto px-2 py-4 flex flex-col items-center z-20 relative overflow-auto max-w-full sm:px-4 sm:py-8">
+    <!-- Search & Location -->
+    <div class="w-full max-w-md mb-6 flex flex-col gap-4 items-center">
+      <div class="flex flex-col gap-2 w-full sm:flex-row sm:gap-2">
+        <input id="city-input" type="text" placeholder="Enter city name..." class="flex-1 px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 w-full sm:w-auto text-sm sm:text-base text-white" />
+        <button id="search-btn" class="px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition w-full sm:w-auto text-sm sm:text-base">Search</button>
+        <button id="location-btn" class="px-3 py-2 bg-gray-200 text-blue-600 rounded-lg hover:bg-blue-100 transition flex items-center gap-1 w-full sm:w-auto text-sm sm:text-base mt-2 sm:mt-0">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2v2m0 16v2m8-10h2M2 12H4m15.364-7.364l1.414 1.414M4.222 19.778l1.414-1.414M19.778 19.778l-1.414-1.414M4.222 4.222l1.414 1.414"/></svg>
+          My Location
+        </button>
+      </div>
+      <!-- Recent Searches Dropdown -->
+      <div id="recent-dropdown" class="hidden relative">
+        <button class="w-full px-4 py-2 bg-white border rounded-lg shadow flex justify-between items-center">
+          Recent Cities
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <ul class="absolute left-0 right-0 mt-2 bg-white border rounded-lg shadow z-10" id="recent-list">
+          <!-- Recent cities will be injected here -->
+        </ul>
+      </div>
+    </div>
+
+    <!-- Current Weather Card -->
   <section id="current-weather" class="w-full max-w-full sm:max-w-md bg-white/40 backdrop-blur-xl rounded-2xl sm:rounded-3xl shadow-2xl p-4 sm:p-8 mb-6 sm:mb-8 flex flex-col items-center border border-white/30">
       <div class="flex items-center gap-4 mb-2">
         <span id="city-name" class="text-xl font-semibold">City Name</span>
@@ -98,11 +84,22 @@
       <div id="alert" class="mt-4 hidden px-4 py-2 rounded-lg bg-red-100 text-red-700 font-semibold"></div>
     </section>
 
+    <!-- Extended Forecast -->
+  <section id="forecast" class="w-full pb-3.5 max-w-full grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 sm:max-w-4xl md:gap-8 md:px-4 md:pr-0 lg:pr-20">
+      <!-- Forecast cards will be injected here -->
+    </section>
 
-      <!-- Footer -->
+    <!-- Error Message -->
+   
+    <div
+     id="error-message" class="hidden mt-6 px-4 py-2 rounded-lg bg-yellow-100 text-yellow-800 font-semibold"></div>
+  </main>
+
+  <!-- Footer -->
   <footer class="py-3 bg-blue-600 text-white text-center z-30 shadow-md w-full mt-auto mb-0 text-xs lg:mb-0 sm:text-sm md:text-base lg:text-lg px-2 sm:px-4 fixed inset-x-0 bottom-0 md:relative md:mb-24 ">
-    <span>© 2025 Your Name | <a href="#" class="underline">GitHub: pathan07-07</a></span>
+    <span>© 2025 Pathan Tabish | <a href="#" class="underline">GitHub: pathan07-07</a></span>
   </footer>
-</body>
 
+  <script src="index.js"></script>
+</body>
 </html>
