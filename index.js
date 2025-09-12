@@ -53,8 +53,6 @@ function addRecentCity(city) {
   setRecentCities(cities);
   renderRecentCities();
 }
-
-
 // Toggle dropdown open/close
 recentBtn.onclick = (e) => {
   e.stopPropagation();
@@ -174,17 +172,15 @@ function updateCurrentWeather(data) {
   } else {
     alertBox.classList.add('hidden');
   }
-// Set video background according to weather
+
+  // Set video background according to weather
   setAppBackground(data.weather[0].main.toLowerCase());
 }
-
-
-
 
 function setAppBackground(condition) {
   // Change video background according to weather
   const video = document.getElementById('weather-video');
-  let src = 'videos/clear.mp4';
+  let src = 'Weather_forecast\src\videos\clear.mp4'; // Default
   switch (condition) {
     case 'rain':
       src = './videos/rain.mp4'; break;
@@ -209,4 +205,70 @@ function setAppBackground(condition) {
       video.load();
     }
   }
+}
+
+function updateForecast(data) {
+  const forecastEl = document.getElementById('forecast');
+  forecastEl.innerHTML = '';
+  // Group by day
+  const days = {};
+  data.list.forEach(item => {
+    const date = item.dt_txt.split(' ')[0];
+    if (!days[date]) days[date] = [];
+    days[date].push(item);
+  });
+    Object.keys(days).slice(0, 5).forEach(date => {
+      const dayData = days[date][0];
+      forecastEl.innerHTML += `
+        <div class="min-w-[220px] max-lg:w-[250px] lg:h-[420px] max-sm:h-[800px ] max-sm:mb-8  max-sm:w-[300px ]  bg-white/60 backdrop-blur-xl rounded-[2.5rem] shadow-2xl p-6 flex flex-col items-center border border-white/30 ml-8 lg:mx-2  flex-shrink-0">
+          <span class="font-semibold mb-2 text-lg">${new Date(date).toLocaleDateString()}</span>
+          <img src="https://openweathermap.org/img/wn/${dayData.weather[0].icon}@2x.png" alt="icon" class="w-20 h-20 mb-2" />
+          <span class="text-2xl font-bold mb-2">${Math.round(dayData.main.temp)}${currentUnit === 'metric' ? '°C' : '°F'}</span>
+          <span class="capitalize text-gray-700 mb-4">${dayData.weather[0].description}</span>
+          <div class="flex flex-col gap-3 mt-auto w-full">
+            <div class="flex items-center gap-2 text-gray-700 justify-center">
+              <!-- Humidity Icon: Droplet -->
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 3C12 3 6 10.5 6 15a6 6 0 0012 0c0-4.5-6-12-6-12z"/><path d="M12 17a2 2 0 002-2"/></svg>
+              <span class="mr-6">Humidity: ${dayData.main.humidity}%</span>
+            </div>
+            <div class="flex items-center gap-2 text-gray-700 justify-center">
+              <!-- Wind Icon: Wind lines -->
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12h13a3 3 0 100-6 3 3 0 00-3 3"/><path d="M4 18h9a2 2 0 100-4 2 2 0 00-2 2"/></svg>
+              <span class="mr-6">Wind: ${dayData.wind.speed}${currentUnit === 'metric' ? ' km/h' : ' mph'}</span>
+            </div>
+          </div>
+        </div>
+      `;
+  });
+}
+
+function showError(msg) {
+  // Hide weather and forecast sections
+  const currentWeather = document.getElementById('current-weather');
+  const forecast = document.getElementById('forecast');
+  if (currentWeather) currentWeather.classList.add('hidden');
+  if (forecast) forecast.classList.add('hidden');
+  // Show error message in the center
+  errorMessage.textContent = msg;
+  errorMessage.className = 'flex items-center justify-center mt-10 mb-10 px-6 py-4 rounded-xl bg-red-100 text-red-700 font-bold text-lg shadow-lg z-30';
+  errorMessage.style.display = 'flex';
+  errorMessage.classList.remove('hidden');
+}
+
+function showWeatherSections() {
+  const currentWeather = document.getElementById('current-weather');
+  const forecast = document.getElementById('forecast');
+  if (currentWeather) currentWeather.classList.remove('hidden');
+  if (forecast) forecast.classList.remove('hidden');
+  errorMessage.classList.add('hidden');
+  errorMessage.style.display = 'none';
+}
+
+function hideWeatherSections() {
+  const currentWeather = document.getElementById('current-weather');
+  const forecast = document.getElementById('forecast');
+  if (currentWeather) currentWeather.classList.add('hidden');
+  if (forecast) forecast.classList.add('hidden');
+  errorMessage.classList.add('hidden');
+  errorMessage.style.display = 'none';
 }
