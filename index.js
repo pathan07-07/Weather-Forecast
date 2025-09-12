@@ -180,23 +180,23 @@ function updateCurrentWeather(data) {
 function setAppBackground(condition) {
   // Change video background according to weather
   const video = document.getElementById('weather-video');
-  let src = 'Weather_forecast\src\videos\clear.mp4'; // Default
+  let src = 'Weather_forecast\videos\clear.mp4'; // Default
   switch (condition) {
     case 'rain':
-      src = 'Weather_forecast\src\videos\rain.mp4'; break;
+      src = 'Weather_forecast\videos\rain.mp4'; break;
     case 'clouds':
-      src = 'Weather_forecast\src\videos\clouds.mp4'; break;
+      src = 'Weather_forecast\videos\clouds.mp4'; break;
     case 'snow':
-      src = 'Weather_forecast\src\videos\snow.mp4'; break;
+      src = 'Weather_forecast\videos\snow.mp4'; break;
     case 'thunderstorm':
-      src = 'Weather_forecast\src\videos\thunderstorm.mp4'; break;
+      src = 'Weather_forecast\videos\thunderstorm.mp4'; break;
     case 'mist':
-      src = 'Weather_forecast\src\videos\mist.mp4'; break;
+      src = 'Weather_forecast\videos\mist.mp4'; break;
     case 'drizzle':
-      src = 'Weather_forecast\src\videos\drizzel.mp4'; break;
+      src = 'Weather_forecast\videos\drizzel.mp4'; break;
     case 'clear':
     default:
-      src = 'Weather_forecast\src\videos\clear.mp4'; break;
+      src = 'Weather_forecast\videos\clear.mp4'; break;
   }
   if (video) {
     const source = video.querySelector('source');
