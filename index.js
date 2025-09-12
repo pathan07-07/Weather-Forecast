@@ -183,20 +183,20 @@ function setAppBackground(condition) {
   let src = 'Weather_forecast\src\videos\clear.mp4'; // Default
   switch (condition) {
     case 'rain':
-      src = './videos/rain.mp4'; break;
+      src = 'Weather_forecast\src\videos\rain.mp4'; break;
     case 'clouds':
-      src = './videos/clouds.mp4'; break;
+      src = 'Weather_forecast\src\videos\clouds.mp4'; break;
     case 'snow':
-      src = './videos/snow.mp4'; break;
+      src = 'Weather_forecast\src\videos\snow.mp4'; break;
     case 'thunderstorm':
-      src = './videos/thunderstorm.mp4'; break;
+      src = 'Weather_forecast\src\videos\thunderstorm.mp4'; break;
     case 'mist':
-      src = './videos/mist.mp4'; break;
+      src = 'Weather_forecast\src\videos\mist.mp4'; break;
     case 'drizzle':
-      src = './videos/drizzle.mp4'; break;
+      src = 'Weather_forecast\src\videos\drizzel.mp4'; break;
     case 'clear':
     default:
-      src = './videos/clear.mp4'; break;
+      src = 'Weather_forecast\src\videos\clear.mp4'; break;
   }
   if (video) {
     const source = video.querySelector('source');
