@@ -66,7 +66,38 @@
             </div>
         </div>
 
-        <!-- Current Weather Card -->
+         <!-- Current Weather Card -->
+  <section id="current-weather" class="w-full max-w-full sm:max-w-md bg-white/40 backdrop-blur-xl rounded-2xl sm:rounded-3xl shadow-2xl p-4 sm:p-8 mb-6 sm:mb-8 flex flex-col items-center border border-white/30">
+      <div class="flex items-center gap-4 mb-2">
+        <span id="city-name" class="text-xl font-semibold">City Name</span>
+        <span id="country" class="text-sm ">Country</span>
+        <span id="date" class="ml-auto text-xs ">Date</span>
+      </div>
+      <div class="flex items-center gap-6">
+        <img id="weather-icon" src="" alt="Weather Icon" class="w-16 h-16" />
+        <div class="flex flex-col items-center">
+          <div class="flex items-center gap-2">
+            <span id="temperature" class="text-4xl font-bold">--</span>
+            <button id="unit-toggle" class="text-lg text-blue-600 underline">°C</button>
+          </div>
+          <span id="description" class="text-gray-600">Description</span>
+        </div>
+      </div>
+      <div class="flex gap-6 mt-4">
+        <div class="flex items-center gap-1 text-gray-700">
+          <!-- Humidity Icon: Droplet -->
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 3C12 3 6 10.5 6 15a6 6 0 0012 0c0-4.5-6-12-6-12z"/><path d="M12 17a2 2 0 002-2"/></svg>
+          <span id="humidity">--%</span>
+        </div>
+        <div class="flex items-center gap-1 text-gray-700">
+          <!-- Wind Icon: Wind lines -->
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12h13a3 3 0 100-6 3 3 0 00-3 3"/><path d="M4 18h9a2 2 0 100-4 2 2 0 00-2 2"/></svg>
+          <span id="wind">-- km/h</span>
+        </div>
+      </div>
+      <div id="alert" class="mt-4 hidden px-4 py-2 rounded-lg bg-red-100 text-red-700 font-semibold"></div>
+    </section>
+
        
 </body>
 
