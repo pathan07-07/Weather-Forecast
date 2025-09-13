@@ -217,11 +217,11 @@ function updateForecast(data) {
     if (!days[date]) days[date] = [];
     days[date].push(item);
   });
-    Object.keys(days).slice(0, 5).forEach(date => {
+    Object.keys(days).slice(1, 6).forEach(date => {
       const dayData = days[date][0];
       forecastEl.innerHTML += `
         <div class="min-w-[220px] max-lg:w-[250px] lg:h-[420px] max-sm:h-[800px ] max-sm:mb-8  max-sm:w-[300px ]  bg-white/60 backdrop-blur-xl rounded-[2.5rem] shadow-2xl p-6 flex flex-col items-center border border-white/30 ml-8 lg:mx-2  flex-shrink-0">
-          <span class="font-semibold mb-2 text-lg">${new Date(date).toLocaleDateString()}</span>
+       -   <span class="font-semibold mb-2 text-lg">${new Date(date).toLocaleDateString()}</span>
           <img src="https://openweathermap.org/img/wn/${dayData.weather[0].icon}@2x.png" alt="icon" class="w-20 h-20 mb-2" />
           <span class="text-2xl font-bold mb-2">${Math.round(dayData.main.temp)}${currentUnit === 'metric' ? '°C' : '°F'}</span>
           <span class="capitalize text-gray-700 mb-4">${dayData.weather[0].description}</span>
